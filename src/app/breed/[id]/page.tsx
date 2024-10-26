@@ -10,8 +10,8 @@ export async function generateStaticParams() {
   return breedIds;
 }
 
-async function BreedPage({ params }: { params: { id: string } }) {
-  const { id } = await params;
+async function BreedPage({ params }: never) {
+  const { id } = params;
 
   if (!id) {
     notFound();
@@ -25,7 +25,7 @@ async function BreedPage({ params }: { params: { id: string } }) {
     notFound();
   }
 
-  const images = await fetchBreedImages(id, isDog);
+const images = await fetchBreedImages(id, isDog);
 
   const breedDetails: { [key: string]: string | undefined } = {
     "Origin": breed.origin,
