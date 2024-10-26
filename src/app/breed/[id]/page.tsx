@@ -3,12 +3,17 @@ import { Breed } from "@/utils/types";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const dogBreeds = await fetchDogBreeds();
-  const catBreeds = await fetchCatBreeds();
-
-  const breedIds = [...dogBreeds, ...catBreeds].map((breed) => ({ id: String(breed.id) }));
-  return breedIds;
+  try {
+    const dogBreeds = await fetchDogBreeds();
+    const catBreeds = await fetchCatBreeds();
+    const breedIds = [...dogBreeds, ...catBreeds].map((breed) => ({ id: String(breed.id) }));
+    return breedIds;
+  } catch (error) {
+    console.error("Error fetching breeds during build:", error);
+    return [];
+  }
 }
+
 
 async function BreedPage({ params }: never) {
   const { id } = params;

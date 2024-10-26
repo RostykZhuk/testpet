@@ -40,3 +40,4 @@ export const fetchBreedImages = async (breedId: string, isDog: boolean, limit: n
   if (!response.ok) throw new Error("Failed to fetch breed images");
   return await response.json();
 };
+
