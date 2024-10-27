@@ -1,8 +1,8 @@
 const DOG = process.env.NEXT_PUBLIC_DOG_API_URL_BASIC;
 const CAT = process.env.NEXT_PUBLIC_CAT_API_URL_BASIC;
 
-export const fetchDogBreeds = async () => {
-  const url = `${DOG}/breeds`;
+export const fetchDogBreeds = async (limit = 30) => {
+  const url = `${DOG}/breeds?limit=${limit}`;
   if (!url) throw new Error("Dog API URL is not defined");
 
   const response = await fetch(url, {
@@ -14,8 +14,8 @@ export const fetchDogBreeds = async () => {
   return await response.json();
 };
 
-export const fetchCatBreeds = async () => {
-  const url = `${CAT}/breeds`;
+export const fetchCatBreeds = async (limit = 30) => {
+  const url = `${CAT}/breeds?limit=${limit}`;
   if (!url) throw new Error("Cat API URL is not defined");
 
   const response = await fetch(url, {
